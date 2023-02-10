@@ -26,3 +26,8 @@ spring:
     open-in-view: false
     show-sql: false
 
+bezkoder:
+  app:
+    jwtSecret: ${JWT_SECRET:secret}
+    jwtExpirationMs: ${JWT_EXPIRATION:86400000}
+    refreshTokenExpirationMs: ${REFRESH_TOKEN_EXPIRATION:864000000}
