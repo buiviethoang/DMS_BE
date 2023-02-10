@@ -1,0 +1,28 @@
+server:
+  port: ${JAVA_PORT_DEFAULT:8080}
+#
+spring:
+  application:
+    name: "DMS"
+  # JDBC config
+  datasource:
+    url: ${DB_URL:jdbc:postgresql://john.db.elephantsql.com:5432/wzlnhpec}
+    username: ${DB_USERNAME:wzlnhpec}
+    password: ${DB_PASSWORD:VKH_zptF1oFuipEFUAy50RDpRb8G3TsT}
+    driver-class-name: org.postgresql.Driver
+    hikari:
+      enabled: true
+      maximum-pool-size: 20
+
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQL9Dialect
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        temp:
+          use_jdbc_metadata_defaults: false
+    #        globally_quoted_identifiers: true
+    open-in-view: false
+    show-sql: false
+
