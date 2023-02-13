@@ -4,9 +4,14 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @Getter
 @Setter
@@ -41,6 +46,32 @@ public class UserDetailImpl implements UserDetails {
         this.avatar = avatar;
         this.userCode = userCode;
         this.level = agencyLevel;
+    }
+
+    public static UserDetailImpl build(UserEntity user) {
+        List<GrantedAuthority> authorities = user.getRoles().stream()
+                .map(role -> new SimpleGrantedAuthority(role.getName()))
+                .collect(Collectors.toList());
+        Set<Long> permissionValueList = new HashSet<>();
+        for (RoleEntity rolesEntity : user.getRoles()) {
+            if (rolesEntity.getDeleted() == 0) {
+                for (PermissionEntity permissionEntity : rolesEntity.getPermissionEntities()) {
+                    permissionValueList.add(permissionEntity.getValue());
+                }
+            }
+        }
+        for (PermissionEntity permissionEntity : user.getPermissions()) {
+            permissionValueList.add(permissionEntity.getValue());
+        }
+        Long permission = 0L;
+        for (Long permissionValue : permissionValueList) {
+            permission += permissionValue;
+        }
+        return new UserDetailImpl(
+                user.getId(),
+                user.getName(),
+                user.get
+        );
     }
 
     @Override

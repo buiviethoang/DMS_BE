@@ -2,12 +2,19 @@ package com.thesis.dms.service.auth;
 
 import com.thesis.dms.dto.LoginRequestDTO;
 import com.thesis.dms.dto.RefreshTokenRQ;
+import com.thesis.dms.dto.user.JwtResponse;
+import com.thesis.dms.entity.RefreshTokenEntity;
 import com.thesis.dms.entity.ResultEntity;
+import com.thesis.dms.entity.UserDetailImpl;
 import com.thesis.dms.exception.CustomException;
+import com.thesis.dms.repository.RefreshTokenRepository;
+import com.thesis.dms.repository.UserRepository;
 import com.thesis.dms.service.BaseService;
+import com.thesis.dms.utils.JwtUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -23,9 +30,9 @@ import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Service
-public class AuthServiceImpl extends BaseService implements AuthService {
+public class AuthServiceImpl extends BaseService implements IAuthService {
     @Autowired
-    AuthenticationManager authewnticationManager;
+    AuthenticationManager authenticationManager;
     private static final Logger logger = LoggerFactory.getLogger(AuthServiceImpl.class);
 
     @Autowired
@@ -53,7 +60,7 @@ public class AuthServiceImpl extends BaseService implements AuthService {
         SecurityContextHolder.getContext().setAuthentication(authentication);
         String jwt = jwtUtils.generateJwtToken(authentication);
 
-        UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
+        UserDetailImpl userDetails = (UserDetailImpl) authentication.getPrincipal();
         if (userDetails.getActive() == 1) {
             throw getException(2, "User Not Active");
         }
@@ -72,12 +79,8 @@ public class AuthServiceImpl extends BaseService implements AuthService {
                 userDetails.getUsername(),
                 userDetails.getEmail(),
                 userDetails.getRole(),
-                userDetails.getDepartmentEntity(),
                 roles,
                 userDetails.getAvatar(),
-                userDetails.getIdLeaderDepartment(),
-                userDetails.getAgencyType(),
-                userDetails.getDepartmentCodes(),
                 userDetails.getUserCode(),
                 userDetails.getLevel()
         ));
@@ -86,7 +89,7 @@ public class AuthServiceImpl extends BaseService implements AuthService {
     @Override
     public void logoutUser(Authentication authentication) {
         if (authentication != null) {
-            UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
+            UserDetailImpl userDetails = (UserDetailImpl) authentication.getPrincipal();
             template.delete(userDetails.getUsername());
         }
     }

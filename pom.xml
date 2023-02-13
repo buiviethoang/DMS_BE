@@ -20,8 +20,18 @@
 		<dozer.version>5.5.1</dozer.version>
 		<dozer-jdk8-support.version>1.0.6</dozer-jdk8-support.version>
 		<modelmapper.version>2.3.5</modelmapper.version>
+		<org.json.version>20180813</org.json.version>
 	</properties>
 	<dependencies>
+		<dependency>
+			<groupId>org.springframework.data</groupId>
+			<artifactId>spring-data-redis</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.json</groupId>
+			<artifactId>json</artifactId>
+			<version>${org.json.version}</version>
+		</dependency>
 		<dependency>
 			<groupId>io.jsonwebtoken</groupId>
 			<artifactId>jjwt</artifactId>
