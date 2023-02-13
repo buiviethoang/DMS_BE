@@ -33,7 +33,7 @@ public class JwtUtils {
 
     public String generateJwtToken(UserEntity userEntity) {
         return Jwts.builder()
-                .setSubject((userEntity.getName()))
+                .setSubject((userEntity.getUsername()))
                 .setIssuedAt(new Date())
                 .setExpiration(new Date((new Date()).getTime() + jwtExpirationMs))
                 .signWith(SignatureAlgorithm.HS512, jwtSecret)
