@@ -7,7 +7,6 @@ import com.thesis.dms.constant.response.IResult;
 import com.thesis.dms.converter.CustomDozerBeanMapper;
 import com.thesis.dms.converter.CustomDozerJdk8BeanMapper;
 import com.thesis.dms.dto.ReturnPaginationDTO;
-import com.thesis.dms.entity.UserDetailImpl;
 import com.thesis.dms.entity.UserEntity;
 import com.thesis.dms.exception.CustomException;
 import com.thesis.dms.repository.UserRepository;
@@ -442,18 +441,5 @@ public class BaseService implements IResult, IPaging {
         }
         str = new StringBuffer(str).insert(str.length(),id.toString()).toString();
         return str;
-    }
-    public boolean checkPermission(Authentication authentication, int permissionValue) throws CustomException
-    {
-        if(authentication==null)
-        {
-            throw getException(3,"Không thể xác thực!");
-        }
-        UserDetailImpl userDetails = (UserDetailImpl)authentication.getPrincipal();
-        if(userDetails==null)
-        {
-            throw getException(2,"Không thể hiển thị dữ liệu!");
-        }
-        return (userDetails.getPermission()&permissionValue)!=0;
     }
 }

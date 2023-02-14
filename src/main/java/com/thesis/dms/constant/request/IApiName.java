@@ -7,4 +7,5 @@ public interface IApiName {
     String BASE_GET_ALL = "/get-all";
     // Functional urls
     String AUTHENTICATION = BASE_API_URL + "/auth";
+    String USER = BASE_API_URL + "/user";
 }
