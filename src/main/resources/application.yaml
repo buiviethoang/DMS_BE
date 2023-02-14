@@ -31,3 +31,9 @@ bezkoder:
     jwtSecret: ${JWT_SECRET:secret}
     jwtExpirationMs: ${JWT_EXPIRATION:86400000}
     refreshTokenExpirationMs: ${REFRESH_TOKEN_EXPIRATION:864000000}
+
+redis:
+  host: localhost
+  port: 6379
+  password: ${REDIS_PASSWORD:123456}
+  expired: ${REDIS_EXPIRED:3600000}

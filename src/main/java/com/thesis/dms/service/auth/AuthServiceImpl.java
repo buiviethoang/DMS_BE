@@ -10,11 +10,11 @@ import com.thesis.dms.exception.CustomException;
 import com.thesis.dms.repository.RefreshTokenRepository;
 import com.thesis.dms.repository.UserRepository;
 import com.thesis.dms.service.BaseService;
+import com.thesis.dms.utils.JedisUtil;
 import com.thesis.dms.utils.JwtUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -42,7 +42,7 @@ public class AuthServiceImpl extends BaseService implements IAuthService {
     private UserRepository userRepository;
 
     @Autowired
-    private RedisTemplate<String, String> template;
+    private JedisUtil jedisUtil;
 
     @Autowired
     JwtUtils jwtUtils;
@@ -68,8 +68,8 @@ public class AuthServiceImpl extends BaseService implements IAuthService {
 //        {
 //            throw getException(3,"Không được phép truy cập!");
 //        }
-        template.opsForValue().set(userDetails.getUsername(), jwt);
-        logger.info("token data: {}", template.opsForValue().get(userDetails.getUsername()));
+//        template.opsForValue().set(userDetails.getUsername(), jwt);
+//        logger.info("token data: {}", template.opsForValue().get(userDetails.getUsername()));
 
         List<String> roles = userDetails.getAuthorities().stream()
                 .map(item -> item.getAuthority())
@@ -89,7 +89,7 @@ public class AuthServiceImpl extends BaseService implements IAuthService {
     public void logoutUser(Authentication authentication) {
         if (authentication != null) {
             UserDetailImpl userDetails = (UserDetailImpl) authentication.getPrincipal();
-            template.delete(userDetails.getUsername());
+//            template.delete(userDetails.getUsername());
         }
     }
 
@@ -99,9 +99,9 @@ public class AuthServiceImpl extends BaseService implements IAuthService {
 //        if (userDetails.getRole() != UserType.ADMIN.getValue()) {
 //            throw new CustomException(401, "Không đủ quyền");
 //        }
-        logger.info("username delete token redis: {}", template.opsForValue().get(username));
+//        logger.info("username delete token redis: {}", template.opsForValue().get(username));
 
-        template.delete(username);
+//        template.delete(username);
     }
 
     @Override
