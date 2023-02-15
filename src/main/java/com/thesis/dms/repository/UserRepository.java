@@ -13,4 +13,7 @@ public interface UserRepository extends JpaRepository<UserEntity, Long> {
             " limit 1"
             , nativeQuery = true)
     UserEntity findByUsername(@Param("username") String username);
+
+    @Query(value = "select * from users u where true " + " and u.email = :email limit 1", nativeQuery = true)
+    UserEntity findByEmail(@Param("email") String email);
 }

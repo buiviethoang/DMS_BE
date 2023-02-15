@@ -6,9 +6,9 @@ spring:
     name: "DMS"
   # JDBC config
   datasource:
-    url: ${DB_URL:jdbc:postgresql://john.db.elephantsql.com:5432/wzlnhpec}
-    username: ${DB_USERNAME:wzlnhpec}
-    password: ${DB_PASSWORD:VKH_zptF1oFuipEFUAy50RDpRb8G3TsT}
+    url: ${DB_URL:jdbc:postgresql://35.240.252.35:5432/postgres}
+    username: ${DB_USERNAME:postgres}
+    password: ${DB_PASSWORD:rbking123}
     driver-class-name: org.postgresql.Driver
     hikari:
       enabled: true

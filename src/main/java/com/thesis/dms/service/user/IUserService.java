@@ -12,7 +12,7 @@ public interface IUserService {
     UserEntity updatePassword(Long id, UpdatePasswordDTO object) throws CustomException;
     void forgetPassword(ForgetPasswordDTO object) throws CustomException;
     void resetPassword(Long id);
-    UserEntity register(RegisterDTO object, int userMod) throws Exception;
+    UserEntity register(RegisterDTO object) throws Exception;
 
     UserEntity getUserById(Long id);
 }
