@@ -7,12 +7,9 @@ import lombok.Setter;
 @Setter
 @Getter
 public class RegisterDTO {
-    UserEntity user;
-    String socialId;
-    String accessToken;
-    String applicationId;
-    Long countryId;
-    Long districtId;
-    Long provinceId;
-    Long zoneId;
+    private String username;
+    private String password;
+    private String avatar;
+    private String email;
+    private String phone;
 }

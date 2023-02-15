@@ -38,9 +38,9 @@ public class UserController extends BaseController{
      * @return
      */
     @PostMapping(path = "/register")
-    public ResponseEntity<?> register(@RequestBody RegisterDTO object, @RequestHeader(value = "userMode", required = false) int userMod) {
+    public ResponseEntity<?> register(@RequestBody RegisterDTO object) {
         try {
-            return response(new ResultEntity(1, "register successfully", userService.register(object, userMod)));
+            return response(new ResultEntity(1, "register successfully", userService.register(object)));
         } catch (Exception ex) {
             return response(error(ex));
         }

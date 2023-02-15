@@ -32,7 +32,7 @@ public class UserEntity extends BaseEntity{
     private boolean status;
 
     @Column(name = "code")
-    private boolean code;
+    private String code;
     /**
      * Dia chi email
      */
@@ -54,6 +54,12 @@ public class UserEntity extends BaseEntity{
 
     @Column(name = "role")
     private Integer role;
+
+    @Column(name = "loginToken")
+    private String loginToken;
+
+    @Column(name = "refreshToken")
+    private String refreshToken;
 
     /**
      * Role cua nguoi dung
