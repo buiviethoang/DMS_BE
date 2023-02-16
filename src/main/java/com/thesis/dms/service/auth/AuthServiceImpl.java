@@ -1,10 +1,11 @@
 package com.thesis.dms.service.auth;
 
-import com.thesis.dms.dto.LoginRequestDTO;
-import com.thesis.dms.dto.RefreshTokenRQ;
-import com.thesis.dms.dto.user.JwtResponse;
+import com.thesis.dms.dto.auth.LoginRequestDTO;
+import com.thesis.dms.dto.auth.RefreshTokenRQ;
+import com.thesis.dms.dto.JwtResponseDTO;
 import com.thesis.dms.entity.RefreshTokenEntity;
 import com.thesis.dms.entity.ResultEntity;
+import com.thesis.dms.entity.UserDetailsImpl;
 import com.thesis.dms.exception.CustomException;
 import com.thesis.dms.repository.RefreshTokenRepository;
 import com.thesis.dms.repository.UserRepository;
@@ -57,33 +58,26 @@ public class AuthServiceImpl extends BaseService implements IAuthService {
             throw getException(2, "Thông tin tài khoản mật khẩu không chính xác!");
         }
 
-//        SecurityContextHolder.getContext().setAuthentication(authentication);
-//        String jwt = jwtUtils.generateJwtToken(authentication);
-//
-//        UserDetailImpl userDetails = (UserDetailImpl) authentication.getPrincipal();
+        SecurityContextHolder.getContext().setAuthentication(authentication);
+        String jwt = jwtUtils.generateJwtToken(authentication);
+
+        UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
 //        if (userDetails.getActive() == 1) {
 //            throw getException(2, "User Not Active");
-//        }
-//        if(!checkAccess(pageType,userDetails.getRole()))
-//        {
-//            throw getException(3,"Không được phép truy cập!");
 //        }
 //        template.opsForValue().set(userDetails.getUsername(), jwt);
 //        logger.info("token data: {}", template.opsForValue().get(userDetails.getUsername()));
 
-//        List<String> roles = userDetails.getAuthorities().stream()
-//                .map(item -> item.getAuthority())
-//                .collect(Collectors.toList());
-//        return new ResultEntity(1, "login susses", new JwtResponse(jwt, "",
-//                userDetails.getId(),
-//                userDetails.getUsername(),
-//                userDetails.getEmail(),
-//                userDetails.getRole(),
-//                roles,
-//                userDetails.getAvatar(),
-//                userDetails.getUserCode()
-//        ));
-        return new ResultEntity();
+        List<String> roles = userDetails.getAuthorities().stream()
+                .map(item -> item.getAuthority())
+                .collect(Collectors.toList());
+        return new ResultEntity(1, "login successfully", new JwtResponseDTO(jwt, "",
+               userDetails.getId(),
+                userDetails.getUsername(),
+                userDetails.getEmail(),
+                userDetails.getRole(),
+                userDetails.getAvatar()
+        ));
     }
 
     @Override

@@ -1,4 +1,4 @@
-package com.thesis.dms.constant.request;
+package com.thesis.dms.common.request;
 
 public interface IApiName {
     // Base urls
@@ -8,4 +8,7 @@ public interface IApiName {
     // Functional urls
     String AUTHENTICATION = BASE_API_URL + "/auth";
     String USER = BASE_API_URL + "/user";
+    String PERMISSION = BASE_API_URL + "/permission";
+
+    String ROLE = BASE_API_URL + "/role";
 }

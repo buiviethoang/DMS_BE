@@ -1,7 +1,7 @@
 package com.thesis.dms.service.auth;
 
-import com.thesis.dms.dto.LoginRequestDTO;
-import com.thesis.dms.dto.RefreshTokenRQ;
+import com.thesis.dms.dto.auth.LoginRequestDTO;
+import com.thesis.dms.dto.auth.RefreshTokenRQ;
 import com.thesis.dms.entity.ResultEntity;
 import com.thesis.dms.exception.CustomException;
 import org.springframework.security.core.Authentication;

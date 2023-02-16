@@ -1,4 +1,4 @@
-package com.thesis.dms.constant.common;
+package com.thesis.dms.common.constant;
 
 public class MessageConst {
     public static final String SUCCESS = "Success";

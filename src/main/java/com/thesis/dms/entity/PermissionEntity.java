@@ -15,11 +15,10 @@ import java.util.List;
 public class PermissionEntity extends BaseEntity{
     @Column(name = "name")
     private String name;
-    @Column(name = "display_name")
-    private String displayName;
-    @Column(name = "guard_name")
-    private String guardName;
-
+    @Column(name = "description")
+    private String description;
+    @Column(name = "apply_user_type")
+    private Integer applyUserType;
     @ManyToMany(fetch = FetchType.LAZY, cascade ={CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH},mappedBy = "permissions")
     @JsonIgnore
     private List<UserEntity> listUsers = new ArrayList<>();

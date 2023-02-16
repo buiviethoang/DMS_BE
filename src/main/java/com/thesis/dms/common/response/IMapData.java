@@ -1,4 +1,4 @@
-package com.thesis.dms.constant.response;
+package com.thesis.dms.common.response;
 
 import java.util.ArrayList;
 import java.util.List;

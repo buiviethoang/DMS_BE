@@ -1,7 +1,7 @@
 package com.thesis.dms.converter;
 
 import com.google.gson.*;
-import com.thesis.dms.constant.common.DateTimeConst;
+import com.thesis.dms.common.constant.DateTimeConst;
 
 import java.lang.reflect.Type;
 import java.time.LocalDateTime;

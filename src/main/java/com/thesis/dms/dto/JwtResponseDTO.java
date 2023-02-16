@@ -1,13 +1,11 @@
-package com.thesis.dms.dto.user;
+package com.thesis.dms.dto;
 
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.List;
-
 @Getter
 @Setter
-public class JwtResponse {
+public class JwtResponseDTO {
     private String accessToken;
     private String refreshToken;
     private String type = "Bearer";
@@ -15,20 +13,17 @@ public class JwtResponse {
     private String username;
     private String email;
     private Integer role;
-    private List<String> roles;
     private String avatar;
-    private String userCode;
-    public JwtResponse(String accessToken, String refreshToken, Long id, String username, String email,
-                       Integer role, List<String> roles,
-                       String avatar, String userCode) {
+
+    public JwtResponseDTO(String accessToken, String refreshToken, Long id, String username, String email,
+                          Integer role,
+                          String avatar) {
         this.accessToken = accessToken;
         this.refreshToken = refreshToken;
         this.id = id;
         this.username = username;
         this.email = email;
         this.role = role;
-        this.roles = roles;
         this.avatar = avatar;
-        this.userCode = userCode;
     }
 }

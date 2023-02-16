@@ -1,6 +1,6 @@
 package com.thesis.dms.controller;
 
-import com.thesis.dms.constant.response.IErrorResult;
+import com.thesis.dms.common.response.IErrorResult;
 import com.thesis.dms.converter.CustomDozerBeanMapper;
 import com.thesis.dms.converter.CustomDozerJdk8BeanMapper;
 import com.thesis.dms.entity.ResultEntity;

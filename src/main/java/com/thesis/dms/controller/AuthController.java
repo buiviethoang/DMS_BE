@@ -1,8 +1,8 @@
 package com.thesis.dms.controller;
 
-import com.thesis.dms.constant.request.IApiName;
-import com.thesis.dms.dto.LoginRequestDTO;
-import com.thesis.dms.dto.RefreshTokenRQ;
+import com.thesis.dms.common.request.IApiName;
+import com.thesis.dms.dto.auth.LoginRequestDTO;
+import com.thesis.dms.dto.auth.RefreshTokenRQ;
 import com.thesis.dms.entity.ResultEntity;
 import com.thesis.dms.service.auth.IAuthService;
 import com.thesis.dms.utils.JwtUtils;

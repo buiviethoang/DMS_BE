@@ -1,4 +1,4 @@
-package com.thesis.dms.constant.response;
+package com.thesis.dms.common.response;
 
 import com.thesis.dms.entity.ResultEntity;
 import org.springframework.data.domain.Page;

@@ -1,8 +1,8 @@
 package com.thesis.dms.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
+import org.apache.catalina.User;
 
 import javax.persistence.*;
 import java.util.HashSet;

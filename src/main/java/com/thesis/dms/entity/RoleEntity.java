@@ -17,10 +17,14 @@ import java.util.Set;
 public class RoleEntity extends BaseEntity{
     @Column(name = "name")
     private String name;
-    @Column(name = "display_name")
-    private String displayName;
-    @Column(name = "guard_name")
-    private String guardName;
+    @Column(name = "description")
+    private String description;
+    @Column(name = "apply_user_type")
+    private Integer applyUserType;
+    @Column(name = "code")
+    private String code;
+    @Column(name = "blocked")
+    private Integer blocked = 0;
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = {
             CascadeType.MERGE,

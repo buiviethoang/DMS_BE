@@ -6,14 +6,20 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 public interface UserRepository extends JpaRepository<UserEntity, Long> {
-    @Query(value = "select u.* from tbl_user u" +
-            " inner join tbl_profiles p on p.id=u.col_profile_id" +
+    @Query(value = "select u.* from users u" +
             " where true" +
-            " and UPPER(p.col_username) = UPPER(:username)  " +
+            " and UPPER(u.username) = UPPER(:username)  " +
             " limit 1"
             , nativeQuery = true)
     UserEntity findByUsername(@Param("username") String username);
 
     @Query(value = "select * from users u where true " + " and u.email = :email limit 1", nativeQuery = true)
     UserEntity findByEmail(@Param("email") String email);
+
+    @Query(value = "select u.* from users u" +
+            " where true" +
+            " and p.phone = :phone" +
+            " limit 1"
+            , nativeQuery = true)
+    UserEntity findByPhone(@Param("phone") String phone);
 }

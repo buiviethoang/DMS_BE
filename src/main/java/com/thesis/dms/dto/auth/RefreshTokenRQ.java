@@ -1,4 +1,4 @@
-package com.thesis.dms.dto;
+package com.thesis.dms.dto.auth;
 
 import javax.validation.constraints.NotBlank;
 

@@ -1,6 +1,6 @@
 
 
-package com.thesis.dms.constant.common;
+package com.thesis.dms.common.constant;
 
 import java.time.format.DateTimeFormatter;
 

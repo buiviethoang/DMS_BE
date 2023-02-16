@@ -1,5 +1,6 @@
 package com.thesis.dms.utils;
 
+import com.thesis.dms.entity.UserDetailsImpl;
 import com.thesis.dms.entity.UserEntity;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,16 +20,16 @@ public class JwtUtils {
     @Value("${bezkoder.app.jwtExpirationMs}")
     private int jwtExpirationMs;
 
-//    public String generateJwtToken(Authentication authentication) {
-//        UserDetailImpl userPrincipal = (UserDetailImpl) authentication.getPrincipal();
-//
-//        return Jwts.builder()
-//                .setSubject((userPrincipal.getUsername()))
-//                .setIssuedAt(new Date())
-//                .setExpiration(new Date((new Date()).getTime() + jwtExpirationMs))
-//                .signWith(SignatureAlgorithm.HS512, jwtSecret)
-//                .compact();
-//    }
+    public String generateJwtToken(Authentication authentication) {
+        UserDetailsImpl userPrincipal = (UserDetailsImpl) authentication.getPrincipal();
+
+        return Jwts.builder()
+                .setSubject((userPrincipal.getUsername()))
+                .setIssuedAt(new Date())
+                .setExpiration(new Date((new Date()).getTime() + jwtExpirationMs))
+                .signWith(SignatureAlgorithm.HS512, jwtSecret)
+                .compact();
+    }
 
     public String generateJwtToken(UserEntity userEntity) {
         return Jwts.builder()

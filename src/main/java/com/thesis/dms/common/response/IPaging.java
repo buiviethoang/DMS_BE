@@ -1,4 +1,4 @@
-package com.thesis.dms.constant.response;
+package com.thesis.dms.common.response;
 
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;

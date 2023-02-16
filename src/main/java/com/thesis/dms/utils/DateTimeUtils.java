@@ -2,7 +2,7 @@
 
 package com.thesis.dms.utils;
 
-import com.thesis.dms.constant.common.DateTimeConst;
+import com.thesis.dms.common.constant.DateTimeConst;
 import org.apache.commons.lang3.StringUtils;
 
 import java.text.SimpleDateFormat;

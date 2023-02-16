@@ -1,12 +1,11 @@
-package com.thesis.dms.dto;
+package com.thesis.dms.dto.auth;
 
-import com.thesis.dms.entity.UserEntity;
 import lombok.Getter;
 import lombok.Setter;
 
 @Setter
 @Getter
-public class RegisterDTO {
+public class RegisterAdminDTO {
     private String username;
     private String password;
     private String avatar;

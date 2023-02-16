@@ -1,4 +1,4 @@
-package com.thesis.dms.dto;
+package com.thesis.dms.dto.auth;
 
 import lombok.Getter;
 import lombok.Setter;

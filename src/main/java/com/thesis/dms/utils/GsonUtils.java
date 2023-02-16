@@ -6,7 +6,7 @@ import com.google.gson.FieldAttributes;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonElement;
 import com.thesis.dms.annotation.AnnotationExclusionStrategy;
-import com.thesis.dms.constant.common.DateTimeConst;
+import com.thesis.dms.common.constant.DateTimeConst;
 import com.thesis.dms.converter.LocalDateTimeJsonConverter;
 
 import java.time.LocalDateTime;

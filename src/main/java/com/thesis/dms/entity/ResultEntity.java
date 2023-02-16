@@ -1,6 +1,6 @@
 package com.thesis.dms.entity;
 
-import com.thesis.dms.constant.common.MessageConst;
+import com.thesis.dms.common.constant.MessageConst;
 import lombok.Data;
 
 @Data

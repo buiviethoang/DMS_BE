@@ -1,9 +1,9 @@
 package com.thesis.dms.service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.thesis.dms.constant.common.DateTimeConst;
-import com.thesis.dms.constant.response.IPaging;
-import com.thesis.dms.constant.response.IResult;
+import com.thesis.dms.common.constant.DateTimeConst;
+import com.thesis.dms.common.response.IPaging;
+import com.thesis.dms.common.response.IResult;
 import com.thesis.dms.converter.CustomDozerBeanMapper;
 import com.thesis.dms.converter.CustomDozerJdk8BeanMapper;
 import com.thesis.dms.dto.ReturnPaginationDTO;
@@ -17,7 +17,6 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import org.springframework.web.context.request.RequestContextHolder;
