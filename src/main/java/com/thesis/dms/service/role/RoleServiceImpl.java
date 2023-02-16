@@ -73,7 +73,7 @@ public class RoleServiceImpl extends BaseService implements IRoleService, IMapDa
 
     @Override
     public RoleEntity getDetail(Long id) {
-        return null;
+        return getEntityById(rolesRepository, id);
     }
 
     @Override

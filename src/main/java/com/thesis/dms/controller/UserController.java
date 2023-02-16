@@ -1,6 +1,5 @@
 package com.thesis.dms.controller;
 
-import com.thesis.dms.config.AuthEntryPointJwt;
 import com.thesis.dms.common.request.IApiName;
 import com.thesis.dms.dto.auth.RegisterAdminDTO;
 import com.thesis.dms.dto.user.UserInsertDTO;
@@ -9,8 +8,7 @@ import com.thesis.dms.entity.UserEntity;
 import com.thesis.dms.security.SecurityCheck;
 import com.thesis.dms.service.user.IUserService;
 import io.swagger.annotations.ApiOperation;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -20,9 +18,8 @@ import java.util.Map;
 
 @RestController
 @RequestMapping(path = IApiName.USER)
+@Slf4j
 public class UserController extends BaseController{
-    private static final Logger logger = LoggerFactory.getLogger(AuthEntryPointJwt.class);
-
     @Autowired
     IUserService userService;
 
@@ -51,28 +48,12 @@ public class UserController extends BaseController{
      * @param userInsertDTO
      * @return
      */
-    @ApiOperation(value = "Create a new user by admin", notes = "{\n" +
-            "  \"roleId\": [\n" +
-            "    1,2\n" +
-            "  ],\n" +
-            "  \"departmentId\": 1,\n" +
-            "  \"countryId\": 1,\n" +
-            "  \"zoneId\": 1,\n" +
-            "  \"districtId\": 1,\n" +
-            "  \"provinceId\": 1,\n" +
-            "  \"user\": {\n" +
-            "    \"email\": \"cdmn1994@gmail.com\",\n" +
-            "    \"gender\": 0,\n" +
-            "    \"name\": \"Nguyễn Thục Trang\",\n" +
-            "    \"phone\": \"0972628256\",\n" +
-            "    \"verify\": 0\n" +
-            "  }\n" +
-            "}")
+    @ApiOperation(value = "Create a new user by admin", notes = "{fsdad}")
     @PostMapping(path = "/create")
     public ResponseEntity<?> create(@RequestBody UserInsertDTO userInsertDTO, @RequestHeader Map<String, Object> headers) {
         try {
             UserEntity user = userService.create(userInsertDTO);
-            userService.applyPermission(user, headers);
+//            userService.applyPermission(user, headers);
             return response(new ResultEntity(1, "register user successfully", user));
         } catch (Exception ex) {
             return response(error(ex));

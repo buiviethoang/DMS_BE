@@ -11,7 +11,8 @@ import org.springframework.stereotype.Component;
 public class CommonResource {
     @Value("${redis.host}")
     private String redisHost;
-
     @Value("${redis.port}")
     private int redisPort;
+    @Value("${permission.url-link}")
+    private String urlLink;
 }

@@ -18,7 +18,7 @@ public interface UserRepository extends JpaRepository<UserEntity, Long> {
 
     @Query(value = "select u.* from users u" +
             " where true" +
-            " and p.phone = :phone" +
+            " and u.phone = :phone" +
             " limit 1"
             , nativeQuery = true)
     UserEntity findByPhone(@Param("phone") String phone);

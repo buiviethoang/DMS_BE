@@ -6,7 +6,10 @@ spring:
     name: "DMS"
   # JDBC config
   datasource:
-    url: ${DB_URL:jdbc:postgresql://35.240.252.35:5432/postgres}
+#    url: ${DB_URL:jdbc:postgresql://35.240.252.35:5432/postgres}
+#    username: ${DB_USERNAME:postgres}
+#    password: ${DB_PASSWORD:rbking123}
+    url: ${DB_URL:jdbc:postgresql://localhost:5432/postgres}
     username: ${DB_USERNAME:postgres}
     password: ${DB_PASSWORD:rbking123}
     driver-class-name: org.postgresql.Driver
@@ -37,3 +40,6 @@ redis:
   port: 6379
   password: ${REDIS_PASSWORD:123456}
   expired: ${REDIS_EXPIRED:3600000}
+
+permission:
+  url-link: ${SET_PERMISSION:asddfsd}

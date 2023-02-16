@@ -1,18 +1,24 @@
 package com.thesis.dms.service.user;
 
+import com.google.gson.Gson;
+import com.thesis.dms.common.enums.HttpMethodType;
 import com.thesis.dms.common.enums.UserType;
 import com.thesis.dms.common.response.IMapData;
 import com.thesis.dms.dto.auth.ForgetPasswordDTO;
 import com.thesis.dms.dto.auth.RegisterAdminDTO;
 import com.thesis.dms.dto.auth.UpdatePasswordDTO;
 import com.thesis.dms.dto.user.UserInsertDTO;
+import com.thesis.dms.entity.RoleEntity;
 import com.thesis.dms.entity.UserEntity;
 import com.thesis.dms.entity.auth.TokenPasswordEntity;
 import com.thesis.dms.exception.CustomException;
 import com.thesis.dms.repository.TokenPasswordRepository;
 import com.thesis.dms.repository.UserRepository;
 import com.thesis.dms.service.BaseService;
+import com.thesis.dms.service.role.IRoleService;
+import com.thesis.dms.service.role.RoleServiceImpl;
 import com.thesis.dms.utils.JwtUtils;
+import com.thesis.dms.utils.NetworkUtils;
 import com.thesis.dms.utils.RandomUtils;
 import com.thesis.dms.utils.StrUtils;
 import org.hibernate.internal.util.StringHelper;
@@ -29,15 +35,15 @@ import java.util.Map;
 public class UserServiceImpl extends BaseService implements IUserService, IMapData<UserEntity> {
 
     @Autowired
+    JwtUtils jwtUtils;
+    @Autowired
     PasswordEncoder passwordEncoder;
     @Autowired
     UserRepository userRepository;
-
     @Autowired
     TokenPasswordRepository tokenPasswordRepository;
-
     @Autowired
-    JwtUtils jwtUtils;
+    IRoleService roleService;
     @Override
     public Map<String, Object> getMapData(UserEntity entity) {
         return null;
@@ -49,21 +55,14 @@ public class UserServiceImpl extends BaseService implements IUserService, IMapDa
     }
 
     @Override
+    @Transactional(rollbackFor = Exception.class)
     public UserEntity create(UserInsertDTO object) throws CustomException {
         UserEntity user = initCreation(object);
         for (Long roleId : object.getRoleIds()) {
-            RolesEntity rolesEntity = rolesService.getDetail(roleId);
+            RoleEntity rolesEntity = roleService.getDetail(roleId);
             if (rolesEntity != null) {
                 user.getRoles().add(rolesEntity);
             }
-        }
-        user.setDepartmentCodes(object.getDepartmentCodes());
-        user.setPosition(object.getPosition());
-        save(user);
-        if (object.getAgencyType() != null && object.getAgencyType() == AgencyType.ATHLETE.getValue()) {
-            user.setUserCode(formatCode(user.getId(), "VDV"));
-        } else {
-            user.setUserCode(formatCode(user.getId(), "NV"));
         }
         return save(user);
     }
@@ -71,6 +70,7 @@ public class UserServiceImpl extends BaseService implements IUserService, IMapDa
     private UserEntity initCreation(UserInsertDTO object) throws CustomException {
 
         UserEntity user = customDozerBeanMapper.map(object, UserEntity.class);
+
         if (!StringUtils.isEmpty(user.getPhone())) {
             if (userRepository.findByPhone(user.getPhone()) != null) {
                 throw getException(2, "Số điện thoại đã tồn tại!");
@@ -87,17 +87,8 @@ public class UserServiceImpl extends BaseService implements IUserService, IMapDa
             String username = createUsername(user.getUsername());
             user.setUsername(username);
         }
-
         user.setPassword(passwordEncoder.encode(object.getPassword()));
-
         user = save(user);
-
-        UserEntity userCreate = getCurrentUser();
-        if (userCreate != null) {
-            user.setUserCreate(userCreate);
-            user.setUserUpdate(userCreate);
-        }
-
         String token = RandomUtils.getRandomId();
         saveTokenPassword(user, token);
 
@@ -164,5 +155,18 @@ public class UserServiceImpl extends BaseService implements IUserService, IMapDa
     @Override
     public UserEntity getUserById(Long id) {
         return null;
+    }
+
+    @Override
+    public void applyPermission(UserEntity user, Map<String, Object> headers) {
+        if(user.getRole() == UserType.ADMIN.getValue()) {
+
+            String payload = "{\n" + "    \"userId\": " + user.getId() + ",\n" + "    \"permissionId\": 1\n" + "}";
+            Gson g = new Gson();
+
+            Object permissionDto = g.fromJson(payload, Object.class);
+
+            String res = NetworkUtils.callService("urlLink", HttpMethodType.POST, headers, permissionDto, null);
+        }
     }
 }

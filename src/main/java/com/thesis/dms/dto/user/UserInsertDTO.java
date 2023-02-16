@@ -3,6 +3,9 @@ package com.thesis.dms.dto.user;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Getter
 @Setter
 public class UserInsertDTO {
@@ -13,5 +16,5 @@ public class UserInsertDTO {
 	private String email;
 	private String password;
 	private String phone;
-	private Integer role;
+	List<Long> roleIds = new ArrayList<>();
 }
