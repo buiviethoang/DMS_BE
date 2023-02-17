@@ -25,6 +25,9 @@ public class RoleEntity extends BaseEntity{
     private String code;
     @Column(name = "blocked")
     private Integer blocked = 0;
+    @Column(name = "roleValue")
+    private Long roleValue;
+
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = {
             CascadeType.MERGE,

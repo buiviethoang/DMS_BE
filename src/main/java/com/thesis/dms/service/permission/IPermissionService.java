@@ -2,9 +2,10 @@ package com.thesis.dms.service.permission;
 
 import com.thesis.dms.dto.permission.PermissionRequestDTO;
 import com.thesis.dms.entity.PermissionEntity;
+import com.thesis.dms.exception.CustomException;
 
 public interface IPermissionService {
-    PermissionEntity create(PermissionRequestDTO object);
+    PermissionEntity create(PermissionRequestDTO object) throws CustomException;
 
 //    PermissionEntity update(PermissionEntity object, long id);
 //

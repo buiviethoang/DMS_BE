@@ -3,6 +3,8 @@ package com.thesis.dms.entity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import org.apache.catalina.User;
+import org.hibernate.annotations.NotFound;
+import org.hibernate.annotations.NotFoundAction;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -52,6 +54,11 @@ public class UserEntity extends BaseEntity{
     private String phone;
 
 
+    /**
+     * Phan quyen nguoi dung, mac dinh la user
+     * <p>
+     *
+     */
     @Column(name = "role")
     private Integer role;
 

@@ -54,14 +54,14 @@
 <!--				<class-a>com.efn.service.dto.test.TestInsertDTO</class-a>-->
 <!--				<class-b>com.efn.service.model.TestEntity</class-b>-->
 <!--			</converter>-->
-			<converter type="com.efn.service.converter.vendor.VendorEntityToVendorReturnDTOConverter">
-				<class-a>com.efn.service.model.VendorEntity</class-a>
-				<class-b>com.efn.service.dto.vendor.VendorReturnDTO</class-b>
-			</converter>
-			<converter type="com.efn.service.converter.vendor.VendorInsertDTOToVendorEntityConverter">
-				<class-a>com.efn.service.dto.vendor.VendorInsertDTO</class-a>
-				<class-b>com.efn.service.model.VendorEntity</class-b>
-			</converter>
+<!--			<converter type="com.efn.service.converter.vendor.VendorEntityToVendorReturnDTOConverter">-->
+<!--				<class-a>com.efn.service.model.VendorEntity</class-a>-->
+<!--				<class-b>com.efn.service.dto.vendor.VendorReturnDTO</class-b>-->
+<!--			</converter>-->
+<!--			<converter type="com.efn.service.converter.vendor.VendorInsertDTOToVendorEntityConverter">-->
+<!--				<class-a>com.efn.service.dto.vendor.VendorInsertDTO</class-a>-->
+<!--				<class-b>com.efn.service.model.VendorEntity</class-b>-->
+<!--			</converter>-->
 		</custom-converters>
 	</configuration>
 

@@ -12,11 +12,12 @@ package com.thesis.dms.common.enums;
 public enum UserType {
 
     ADMIN(1),
-    SALE_ADMIN(2),
-    DISTRIBUTOR(3),
-    ASM(4),
-    SUPERVISOR(5),
-    SELLER(6);
+    USER(2),
+    SALE_ADMIN(3),
+    DISTRIBUTOR(4),
+    ASM(5),
+    SUPERVISOR(6),
+    SELLER(7);
 
     private final int value;
 

@@ -39,10 +39,10 @@ public class RoleServiceImpl extends BaseService implements IRoleService, IMapDa
             RoleEntity newRole = role.getRole();
             RoleEntity checkRole = rolesRepository.checkRoleCode(role.getRole().getCode());
             if (checkRole != null) {
-                throw getException(2, "Mã vai trò đã tồn tại!");
+                throw caughtException(2, "Mã vai trò đã tồn tại!");
             }
             if (rolesRepository.checkRoleName(role.getRole().getName()) != null) {
-                throw getException(2, "Tên vai trò đã tồn tại!");
+                throw caughtException(2, "Tên vai trò đã tồn tại!");
             }
             List<Long> permissionIds = role.getPermissions();
             if(permissionIds != null) {
@@ -57,7 +57,7 @@ public class RoleServiceImpl extends BaseService implements IRoleService, IMapDa
             return rolesRepository.save(newRole);
         } catch (Exception ex) {
             ex.printStackTrace();
-            throw getException(2, "Lỗi! Vui lòng thử lại!");
+            throw caughtException(2, "Lỗi! Vui lòng thử lại!");
         }
     }
 

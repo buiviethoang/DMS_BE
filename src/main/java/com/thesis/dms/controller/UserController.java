@@ -50,7 +50,7 @@ public class UserController extends BaseController{
      */
     @ApiOperation(value = "Create a new user by admin", notes = "{fsdad}")
     @PostMapping(path = "/create")
-    public ResponseEntity<?> create(@RequestBody UserInsertDTO userInsertDTO, @RequestHeader Map<String, Object> headers) {
+    public ResponseEntity<?> create(@RequestBody UserInsertDTO userInsertDTO) {
         try {
             UserEntity user = userService.create(userInsertDTO);
 //            userService.applyPermission(user, headers);

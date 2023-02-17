@@ -16,7 +16,6 @@ import com.thesis.dms.repository.TokenPasswordRepository;
 import com.thesis.dms.repository.UserRepository;
 import com.thesis.dms.service.BaseService;
 import com.thesis.dms.service.role.IRoleService;
-import com.thesis.dms.service.role.RoleServiceImpl;
 import com.thesis.dms.utils.JwtUtils;
 import com.thesis.dms.utils.NetworkUtils;
 import com.thesis.dms.utils.RandomUtils;
@@ -73,13 +72,13 @@ public class UserServiceImpl extends BaseService implements IUserService, IMapDa
 
         if (!StringUtils.isEmpty(user.getPhone())) {
             if (userRepository.findByPhone(user.getPhone()) != null) {
-                throw getException(2, "Số điện thoại đã tồn tại!");
+                throw caughtException(2, "Số điện thoại đã tồn tại!");
             }
         }
         // Neu co gui thong tin email, ktra xem email co bi trung khong
         if (!StringUtils.isEmpty(user.getEmail())) {
             if (userRepository.findByEmail(user.getEmail()) != null) {
-                throw getException(3, "Email đã tồn tại!");
+                throw caughtException(3, "Email đã tồn tại!");
             }
         }
 
@@ -88,6 +87,7 @@ public class UserServiceImpl extends BaseService implements IUserService, IMapDa
             user.setUsername(username);
         }
         user.setPassword(passwordEncoder.encode(object.getPassword()));
+        user.setRole(UserType.USER.getValue());
         user = save(user);
         String token = RandomUtils.getRandomId();
         saveTokenPassword(user, token);
@@ -132,14 +132,14 @@ public class UserServiceImpl extends BaseService implements IUserService, IMapDa
             UserEntity checkEmail = userRepository.findByEmail(registeringUser.getEmail());
 
             if (checkEmail != null) {
-                throw getException(6, "Email đã được sử dụng trong hệ thống. Vui lòng nhập lại.");
+                throw caughtException(6, "Email đã được sử dụng trong hệ thống. Vui lòng nhập lại.");
             }
         }
 
         if (!StringUtils.isEmpty(registeringUser.getPhone())) {
             UserEntity checkPhone = userRepository.findByPhone(registeringUser.getPhone());
             if (checkPhone != null) {
-                throw getException(2, "Số điện thoại đã tồn tại");
+                throw caughtException(2, "Số điện thoại đã tồn tại");
             }
         }
         newUser.setAvatar(registeringUser.getAvatar());

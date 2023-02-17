@@ -20,7 +20,10 @@ public class UserDetailsImpl implements UserDetails {
     private String username;
     private String fullName;
     private String email;
-    private int role;
+
+    private Integer roleValue;
+
+    private Long permission;
     private boolean status;
     private String avatar;
 
@@ -30,7 +33,7 @@ public class UserDetailsImpl implements UserDetails {
     private Collection<? extends GrantedAuthority> authorities;
 
     public UserDetailsImpl(Long id, String username, String email, String fullName, String password,
-                           Collection<? extends GrantedAuthority> authorities, int role,
+                           Collection<? extends GrantedAuthority> authorities, Integer role, Long permission,
                            boolean status,
                            String avatar) {
         this.id = id;
@@ -39,9 +42,10 @@ public class UserDetailsImpl implements UserDetails {
         this.fullName = fullName;
         this.password = password;
         this.authorities = authorities;
-        this.role = role;
+        this.roleValue = role;
         this.status = status;
         this.avatar = avatar;
+        this.permission = permission;
     }
 
     public static UserDetailsImpl build(UserEntity user) {
@@ -49,7 +53,21 @@ public class UserDetailsImpl implements UserDetails {
                 .map(role -> new SimpleGrantedAuthority(role.getName()))
                 .collect(Collectors.toList());
 
-        log.info("User role: {} ", user.getRole());
+        Set<Long> permissionValueList = new HashSet<>();
+        for (RoleEntity rolesEntity : user.getRoles()) {
+            if (rolesEntity.getDeleted() == 0) {
+                for (PermissionEntity permissionEntity : rolesEntity.getPermissionEntities()) {
+                    permissionValueList.add(permissionEntity.getValue());
+                }
+            }
+        }
+        for (PermissionEntity permissionEntity : user.getPermissions()) {
+            permissionValueList.add(permissionEntity.getValue());
+        }
+        Long permission = 0L;
+        for (Long permissionValue : permissionValueList) {
+            permission += permissionValue;
+        }
         return new UserDetailsImpl(
                 user.getId(),
                 user.getUsername(),
@@ -57,7 +75,8 @@ public class UserDetailsImpl implements UserDetails {
                 user.getFullName(),
                 user.getPassword(),
                 authorities,
-                1,
+                user.getRole(),
+                permission,
                 true,
                 user.getAvatar()
 

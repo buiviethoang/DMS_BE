@@ -3,6 +3,7 @@ package com.thesis.dms.service.permission;
 import com.thesis.dms.common.response.IMapData;
 import com.thesis.dms.dto.permission.PermissionRequestDTO;
 import com.thesis.dms.entity.PermissionEntity;
+import com.thesis.dms.exception.CustomException;
 import com.thesis.dms.repository.PermissionRepository;
 import com.thesis.dms.repository.UserRepository;
 import com.thesis.dms.service.BaseService;
@@ -32,7 +33,13 @@ public class PermissionServiceImpl extends BaseService implements IPermissionSer
 
     @Override
     @Transactional(rollbackFor=Exception.class)
-    public PermissionEntity create(PermissionRequestDTO permissionRequestDTO) {
+    public PermissionEntity create(PermissionRequestDTO permissionRequestDTO) throws CustomException {
+        if (permissionRepository.getPermissionByName(permissionRequestDTO.getName()) != null) {
+            throw caughtException(2, "Permission name already exists!");
+        }
+        if (permissionRepository.getPermissionByValue(permissionRequestDTO.getValue()) != null) {
+            throw caughtException(2, "Permission value already exists!");
+        }
         PermissionEntity newPermission = new PermissionEntity();
         newPermission.setName(permissionRequestDTO.getName());
         newPermission.setDescription(permissionRequestDTO.getDescription());
@@ -40,6 +47,7 @@ public class PermissionServiceImpl extends BaseService implements IPermissionSer
         newPermission.setValue(permissionRequestDTO.getValue());
         save(newPermission);
         return newPermission;
+
     }
 
     @Override

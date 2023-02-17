@@ -40,7 +40,7 @@ public class AuthTokenFilter extends OncePerRequestFilter {
             throws ServletException, IOException {
         try {
             String jwt = parseJwt(request);
-            logger.info("log token: {}",jwt);
+//            logger.info("log token: {}",jwt);
             StringBuilder requestURL = new StringBuilder(request.getRequestURL().toString());
             String queryString = request.getQueryString();
 
@@ -50,7 +50,7 @@ public class AuthTokenFilter extends OncePerRequestFilter {
                 requestURL.append('?').append(queryString).toString();
             }
 
-            logger.info("requestURL: {}",requestURL);
+//            logger.info("requestURL: {}",requestURL);
 
             if (jwt != null && jwtUtils.validateJwtToken(jwt)) {
                 String username = jwtUtils.getUserNameFromJwtToken(jwt);

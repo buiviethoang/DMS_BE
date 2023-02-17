@@ -240,7 +240,7 @@ public class BaseService implements IResult, IPaging {
         return new CustomException(HttpServletResponse.SC_UNAUTHORIZED, "Invalid Token ");
     }
 
-    protected CustomException getException(String message, Object... objects) {
+    protected CustomException caughtException(String message, Object... objects) {
         return new CustomException(String.format(message, objects));
     }
 
@@ -250,12 +250,12 @@ public class BaseService implements IResult, IPaging {
      * @param code    ma loi
      * @param message Noi dung loi
      */
-    protected CustomException getException(int code, String message, Object... objects) {
+    protected CustomException caughtException(int code, String message, Object... objects) {
         String testMessage = String.format(message, objects);
         return new CustomException(code, String.format(message, objects));
     }
 
-    protected CustomException getException(int code, String message) {
+    protected CustomException caughtException(int code, String message) {
         return new CustomException(code, message);
     }
 

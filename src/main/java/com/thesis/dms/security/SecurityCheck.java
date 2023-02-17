@@ -16,14 +16,14 @@ public class SecurityCheck {
         if(id == null)
             return false;
         UserDetailsImpl userDetails = (UserDetailsImpl)authentication.getPrincipal();
-        if(id.equals(userDetails.getId()) || userDetails.getRole() == UserType.ADMIN.getValue())
+        if(id.equals(userDetails.getId()) || userDetails.getRoleValue() == UserType.ADMIN.getValue())
             return true;
         return false;
     }
     public boolean checkAdmin(Authentication authentication){
         if(authentication != null){
             UserDetailsImpl userDetails = (UserDetailsImpl)authentication.getPrincipal();
-            return userDetails.getRole() == UserType.ADMIN.getValue();
+            return userDetails.getRoleValue() == UserType.ADMIN.getValue();
         }
         return false;
     }

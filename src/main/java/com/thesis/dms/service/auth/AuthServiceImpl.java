@@ -55,7 +55,7 @@ public class AuthServiceImpl extends BaseService implements IAuthService {
                     new UsernamePasswordAuthenticationToken(loginRequest.getUsername(), loginRequest.getPassword()));
         } catch (Exception notFound) {
             notFound.printStackTrace();
-            throw getException(2, "Thông tin tài khoản mật khẩu không chính xác!");
+            throw caughtException(2, "Thông tin tài khoản mật khẩu không chính xác!");
         }
 
         SecurityContextHolder.getContext().setAuthentication(authentication);
@@ -75,7 +75,7 @@ public class AuthServiceImpl extends BaseService implements IAuthService {
                userDetails.getId(),
                 userDetails.getUsername(),
                 userDetails.getEmail(),
-                userDetails.getRole(),
+                userDetails.getRoleValue(),
                 userDetails.getAvatar()
         ));
     }
