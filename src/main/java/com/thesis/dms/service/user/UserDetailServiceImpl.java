@@ -1,7 +1,7 @@
 package com.thesis.dms.service.user;
 
-import com.thesis.dms.entity.UserDetailsImpl;
-import com.thesis.dms.entity.UserEntity;
+import com.thesis.dms.entity.user.UserDetailsImpl;
+import com.thesis.dms.entity.user.UserEntity;
 import com.thesis.dms.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;

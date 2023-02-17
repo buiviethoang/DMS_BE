@@ -4,7 +4,7 @@ import com.thesis.dms.dto.GetAllElementResponse;
 import com.thesis.dms.dto.ReturnPaginationDTO;
 import com.thesis.dms.dto.role.RoleInsertDTO;
 import com.thesis.dms.dto.role.RoleResponseDTO;
-import com.thesis.dms.entity.RoleEntity;
+import com.thesis.dms.entity.auth.RoleEntity;
 import com.thesis.dms.exception.CustomException;
 
 import java.util.List;

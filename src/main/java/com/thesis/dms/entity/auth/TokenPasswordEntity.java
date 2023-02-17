@@ -2,7 +2,7 @@ package com.thesis.dms.entity.auth;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.thesis.dms.entity.BaseEntity;
-import com.thesis.dms.entity.UserEntity;
+import com.thesis.dms.entity.user.UserEntity;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.NotFound;

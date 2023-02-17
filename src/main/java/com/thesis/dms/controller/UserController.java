@@ -4,7 +4,7 @@ import com.thesis.dms.common.request.IApiName;
 import com.thesis.dms.dto.auth.RegisterAdminDTO;
 import com.thesis.dms.dto.user.UserInsertDTO;
 import com.thesis.dms.entity.ResultEntity;
-import com.thesis.dms.entity.UserEntity;
+import com.thesis.dms.entity.user.UserEntity;
 import com.thesis.dms.security.SecurityCheck;
 import com.thesis.dms.service.user.IUserService;
 import io.swagger.annotations.ApiOperation;
@@ -13,8 +13,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.Map;
 
 @RestController
 @RequestMapping(path = IApiName.USER)

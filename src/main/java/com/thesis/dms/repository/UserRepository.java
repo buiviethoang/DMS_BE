@@ -1,6 +1,6 @@
 package com.thesis.dms.repository;
 
-import com.thesis.dms.entity.UserEntity;
+import com.thesis.dms.entity.user.UserEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;

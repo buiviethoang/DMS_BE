@@ -2,8 +2,8 @@ package com.thesis.dms.dto.role;
 
 import com.thesis.dms.dto.BaseReturnDTO;
 import com.thesis.dms.dto.permission.PermissionResponseDTO;
-import com.thesis.dms.entity.PermissionEntity;
-import com.thesis.dms.entity.RoleEntity;
+import com.thesis.dms.entity.auth.PermissionEntity;
+import com.thesis.dms.entity.auth.RoleEntity;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

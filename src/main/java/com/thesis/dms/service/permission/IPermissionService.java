@@ -1,7 +1,7 @@
 package com.thesis.dms.service.permission;
 
 import com.thesis.dms.dto.permission.PermissionRequestDTO;
-import com.thesis.dms.entity.PermissionEntity;
+import com.thesis.dms.entity.auth.PermissionEntity;
 import com.thesis.dms.exception.CustomException;
 
 public interface IPermissionService {

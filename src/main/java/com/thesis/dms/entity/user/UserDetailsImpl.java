@@ -1,6 +1,8 @@
-package com.thesis.dms.entity;
+package com.thesis.dms.entity.user;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.thesis.dms.entity.auth.PermissionEntity;
+import com.thesis.dms.entity.auth.RoleEntity;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;

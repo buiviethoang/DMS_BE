@@ -43,3 +43,12 @@ redis:
 
 permission:
   url-link: ${SET_PERMISSION:asddfsd}
+
+image:
+  upload-dir: ${IMAGE_UPLOAD_DIR:./data/image}
+  thumbnail:
+    width: 320
+    height: 180
+
+file:
+  upload-dir: ${FILE_UPLOAD_DIR:./data/file}

@@ -2,7 +2,7 @@ package com.thesis.dms.service.permission;
 
 import com.thesis.dms.common.response.IMapData;
 import com.thesis.dms.dto.permission.PermissionRequestDTO;
-import com.thesis.dms.entity.PermissionEntity;
+import com.thesis.dms.entity.auth.PermissionEntity;
 import com.thesis.dms.exception.CustomException;
 import com.thesis.dms.repository.PermissionRepository;
 import com.thesis.dms.repository.UserRepository;

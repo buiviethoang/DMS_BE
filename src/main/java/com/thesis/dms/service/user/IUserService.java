@@ -3,9 +3,8 @@ package com.thesis.dms.service.user;
 import com.thesis.dms.dto.auth.ForgetPasswordDTO;
 import com.thesis.dms.dto.auth.RegisterAdminDTO;
 import com.thesis.dms.dto.auth.UpdatePasswordDTO;
-import com.thesis.dms.dto.user.UserDTO;
 import com.thesis.dms.dto.user.UserInsertDTO;
-import com.thesis.dms.entity.UserEntity;
+import com.thesis.dms.entity.user.UserEntity;
 import com.thesis.dms.exception.CustomException;
 
 import java.util.Map;

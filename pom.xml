@@ -21,8 +21,24 @@
 		<dozer-jdk8-support.version>1.0.6</dozer-jdk8-support.version>
 		<modelmapper.version>2.3.5</modelmapper.version>
 		<org.json.version>20180813</org.json.version>
+		<imgscalr.version>4.2</imgscalr.version>
 	</properties>
 	<dependencies>
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi</artifactId>
+			<version>3.17</version>
+		</dependency>
+		<dependency>
+			<groupId>commons-io</groupId>
+			<artifactId>commons-io</artifactId>
+			<version>2.11.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.imgscalr</groupId>
+			<artifactId>imgscalr-lib</artifactId>
+			<version>${imgscalr.version}</version>
+		</dependency>
 		<dependency>
 			<groupId>redis.clients</groupId>
 			<artifactId>jedis</artifactId>

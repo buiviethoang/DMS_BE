@@ -1,10 +1,10 @@
-package com.thesis.dms.entity;
+package com.thesis.dms.entity.user;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.thesis.dms.entity.BaseEntity;
+import com.thesis.dms.entity.auth.PermissionEntity;
+import com.thesis.dms.entity.auth.RoleEntity;
 import lombok.*;
-import org.apache.catalina.User;
-import org.hibernate.annotations.NotFound;
-import org.hibernate.annotations.NotFoundAction;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -14,7 +14,7 @@ import java.util.Set;
 @Table(name = "users")
 @Getter
 @Setter
-public class UserEntity extends BaseEntity{
+public class UserEntity extends BaseEntity {
 
     @Column(name = "full_name")
     private String fullName;

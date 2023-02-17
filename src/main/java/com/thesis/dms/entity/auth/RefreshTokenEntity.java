@@ -1,12 +1,14 @@
-package com.thesis.dms.entity;
+package com.thesis.dms.entity.auth;
 
+import com.thesis.dms.entity.user.UserEntity;
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.Instant;
 
-@Entity(name = "refreshtoken")
+@Entity
+@Table(name = "refresh_token")
 @Getter
 @Setter
 public class RefreshTokenEntity {

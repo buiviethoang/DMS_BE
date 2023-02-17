@@ -1,6 +1,6 @@
 package com.thesis.dms.dto.role;
 
-import com.thesis.dms.entity.RoleEntity;
+import com.thesis.dms.entity.auth.RoleEntity;
 import lombok.Getter;
 import lombok.Setter;
 

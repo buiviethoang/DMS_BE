@@ -2,10 +2,10 @@ package com.thesis.dms.service.auth;
 
 import com.thesis.dms.dto.auth.LoginRequestDTO;
 import com.thesis.dms.dto.auth.RefreshTokenRQ;
-import com.thesis.dms.dto.JwtResponseDTO;
-import com.thesis.dms.entity.RefreshTokenEntity;
+import com.thesis.dms.dto.auth.JwtResponseDTO;
+import com.thesis.dms.entity.auth.RefreshTokenEntity;
 import com.thesis.dms.entity.ResultEntity;
-import com.thesis.dms.entity.UserDetailsImpl;
+import com.thesis.dms.entity.user.UserDetailsImpl;
 import com.thesis.dms.exception.CustomException;
 import com.thesis.dms.repository.RefreshTokenRepository;
 import com.thesis.dms.repository.UserRepository;

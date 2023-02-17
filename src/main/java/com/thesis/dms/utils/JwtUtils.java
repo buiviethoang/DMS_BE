@@ -1,7 +1,7 @@
 package com.thesis.dms.utils;
 
-import com.thesis.dms.entity.UserDetailsImpl;
-import com.thesis.dms.entity.UserEntity;
+import com.thesis.dms.entity.user.UserDetailsImpl;
+import com.thesis.dms.entity.user.UserEntity;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;

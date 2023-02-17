@@ -1,7 +1,7 @@
 package com.thesis.dms.security;
 
 import com.thesis.dms.common.enums.UserType;
-import com.thesis.dms.entity.UserDetailsImpl;
+import com.thesis.dms.entity.user.UserDetailsImpl;
 import com.thesis.dms.utils.JwtUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;

@@ -7,7 +7,7 @@ import com.thesis.dms.common.response.IResult;
 import com.thesis.dms.converter.CustomDozerBeanMapper;
 import com.thesis.dms.converter.CustomDozerJdk8BeanMapper;
 import com.thesis.dms.dto.ReturnPaginationDTO;
-import com.thesis.dms.entity.UserEntity;
+import com.thesis.dms.entity.user.UserEntity;
 import com.thesis.dms.exception.CustomException;
 import com.thesis.dms.repository.UserRepository;
 import com.thesis.dms.utils.GsonUtils;

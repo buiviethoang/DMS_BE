@@ -1,6 +1,8 @@
-package com.thesis.dms.entity;
+package com.thesis.dms.entity.auth;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.thesis.dms.entity.BaseEntity;
+import com.thesis.dms.entity.user.UserEntity;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -12,7 +14,7 @@ import java.util.List;
 @Table(name = "permission")
 @Getter
 @Setter
-public class PermissionEntity extends BaseEntity{
+public class PermissionEntity extends BaseEntity {
     @Column(name = "name")
     private String name;
     @Column(name = "description")

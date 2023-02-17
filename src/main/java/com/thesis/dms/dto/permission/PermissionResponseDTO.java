@@ -1,6 +1,6 @@
 package com.thesis.dms.dto.permission;
 
-import com.thesis.dms.entity.PermissionEntity;
+import com.thesis.dms.entity.auth.PermissionEntity;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
