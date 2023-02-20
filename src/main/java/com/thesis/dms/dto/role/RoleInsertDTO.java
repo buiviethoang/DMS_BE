@@ -11,6 +11,11 @@ import java.util.List;
 @Setter
 public class RoleInsertDTO {
     @NotNull
-    private RoleEntity role;
+    private String name;
+    private String description;
+    private Integer applyUserType;
+    private String code;
+    private Integer blocked;
+    private Long roleValue;w
     private List<Long> permissions;
 }

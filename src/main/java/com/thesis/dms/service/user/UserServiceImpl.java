@@ -70,13 +70,13 @@ public class UserServiceImpl extends BaseService implements IUserService, IMapDa
 
         UserEntity user = customDozerBeanMapper.map(object, UserEntity.class);
 
-        if (!StringUtils.isEmpty(user.getPhone())) {
+        if (!StringHelper.isEmpty(user.getPhone())) {
             if (userRepository.findByPhone(user.getPhone()) != null) {
                 throw caughtException(2, "Số điện thoại đã tồn tại!");
             }
         }
         // Neu co gui thong tin email, ktra xem email co bi trung khong
-        if (!StringUtils.isEmpty(user.getEmail())) {
+        if (!StringHelper.isEmpty(user.getEmail())) {
             if (userRepository.findByEmail(user.getEmail()) != null) {
                 throw caughtException(3, "Email đã tồn tại!");
             }

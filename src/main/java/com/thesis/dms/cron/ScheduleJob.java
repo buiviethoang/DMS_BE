@@ -2,11 +2,9 @@ package com.thesis.dms.cron;
 
 import com.thesis.dms.exception.CustomException;
 import com.thesis.dms.service.product.ProductService;
-import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 
@@ -17,7 +15,7 @@ public class ScheduleJob {
 
     @Scheduled(fixedDelay = 10000)
     public void importFileDemo() throws IOException, CustomException {
-        String fileName = "data/file/[template]-checklist-handover_cb2ed509_52ad_4e02_9b10_01a7dea2a788.xls";
+        String fileName = "data/file/product_b33cf9a7_76d3_49aa_acf9_42173debf32b.xlsx";
         productService.readProductFromExcel(fileName);
     }
 }

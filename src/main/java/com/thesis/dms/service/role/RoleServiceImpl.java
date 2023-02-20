@@ -36,12 +36,12 @@ public class RoleServiceImpl extends BaseService implements IRoleService, IMapDa
     @Transactional // if not, throw error: Detached Entity Passed to Persist
     public RoleEntity create(RoleInsertDTO role) throws CustomException {
         try {
-            RoleEntity newRole = role.getRole();
-            RoleEntity checkRole = rolesRepository.checkRoleCode(role.getRole().getCode());
+            RoleEntity newRole = customDozerBeanMapper.map(role, RoleEntity.class);
+            RoleEntity checkRole = rolesRepository.checkRoleCode(role.getCode());
             if (checkRole != null) {
                 throw caughtException(2, "Mã vai trò đã tồn tại!");
             }
-            if (rolesRepository.checkRoleName(role.getRole().getName()) != null) {
+            if (rolesRepository.checkRoleName(role.getName()) != null) {
                 throw caughtException(2, "Tên vai trò đã tồn tại!");
             }
             List<Long> permissionIds = role.getPermissions();
