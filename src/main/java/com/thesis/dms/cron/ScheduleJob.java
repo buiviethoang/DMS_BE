@@ -13,9 +13,9 @@ public class ScheduleJob {
     @Autowired
     private ProductService productService;
 
-    @Scheduled(fixedDelay = 10000)
-    public void importFileDemo() throws IOException, CustomException {
-        String fileName = "data/file/product_b33cf9a7_76d3_49aa_acf9_42173debf32b.xlsx";
-        productService.readProductFromExcel(fileName);
-    }
+//    @Scheduled(fixedDelay = 10000)
+//    public void importFileDemo() throws IOException, CustomException {
+//        String fileName = "data/file/product_b33cf9a7_76d3_49aa_acf9_42173debf32b.xlsx";
+//        productService.readProductFromExcel(fileName);
+//    }
 }

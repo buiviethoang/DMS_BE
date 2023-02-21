@@ -16,6 +16,6 @@ public class RoleInsertDTO {
     private Integer applyUserType;
     private String code;
     private Integer blocked;
-    private Long roleValue;w
+    private Long roleValue;
     private List<Long> permissions;
 }

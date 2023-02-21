@@ -2,9 +2,11 @@ package com.thesis.dms.service.product;
 
 import com.thesis.dms.entity.product.ProductEntity;
 import com.thesis.dms.exception.CustomException;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.util.List;
 
 public interface IProductService {
-    void readProductFromExcel(String fileName) throws IOException, CustomException;
+    List<ProductEntity> readProductFromExcel(MultipartFile file) throws IOException, CustomException;
 }

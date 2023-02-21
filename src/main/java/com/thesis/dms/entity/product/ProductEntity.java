@@ -22,7 +22,7 @@ public class ProductEntity extends BaseEntity {
     @Column(name = "unit_quantity")
     private Long unitQuantity;
     @Column(name = "status")
-    private boolean status;
+    private Boolean status;
     @Column(name = "color")
     private String color;
     @Column(name = "mass_no")
