@@ -1,5 +1,6 @@
 package com.thesis.dms.service.auth;
 
+import com.thesis.dms.common.constant.RedisConst;
 import com.thesis.dms.dto.auth.LoginRequestDTO;
 import com.thesis.dms.dto.auth.RefreshTokenRQ;
 import com.thesis.dms.dto.auth.JwtResponseDTO;
@@ -71,8 +72,11 @@ public class AuthServiceImpl extends BaseService implements IAuthService {
         List<String> roles = userDetails.getAuthorities().stream()
                 .map(item -> item.getAuthority())
                 .collect(Collectors.toList());
+
+        jedisUtil.cacheRedisData(userDetails.getUsername(), RedisConst.TIME_TO_LIVE , RedisConst.USER_LOGIN_TOKEN.replace("<token>", jwt));
+
         return new ResultEntity(1, "login successfully", new JwtResponseDTO(jwt, "",
-               userDetails.getId(),
+                userDetails.getId(),
                 userDetails.getUsername(),
                 userDetails.getEmail(),
                 userDetails.getRoleValue(),

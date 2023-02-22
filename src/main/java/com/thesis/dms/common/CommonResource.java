@@ -29,4 +29,7 @@ public class CommonResource {
 
     @Value("${file.upload-dir}")
     private String filePath;
+
+    @Value("${websocket.base-path}")
+    private String websocketPath;
 }

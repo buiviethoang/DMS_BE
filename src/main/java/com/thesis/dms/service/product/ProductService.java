@@ -1,8 +1,10 @@
 package com.thesis.dms.service.product;
 
+import com.thesis.dms.dto.product.ProductDTO;
 import com.thesis.dms.entity.product.ProductEntity;
 import com.thesis.dms.exception.CustomException;
 import com.thesis.dms.repository.ProductRepository;
+import com.thesis.dms.repository.custom.CustomProductRepository;
 import com.thesis.dms.service.BaseService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.poi.ss.usermodel.*;
@@ -26,6 +28,9 @@ public class ProductService extends BaseService implements IProductService{
 
     @Autowired
     private ProductRepository productRepository;
+
+    @Autowired
+    private CustomProductRepository customProductRepository;
     @Override
     public List<ProductEntity> readProductFromExcel(MultipartFile file) throws IOException, CustomException {
         try {
@@ -71,7 +76,7 @@ public class ProductService extends BaseService implements IProductService{
                 listProduct.add(productEntity);
             }
             log.info("Num of product added {}", listProduct.size());
-            productRepository.updateListProduct(listProduct);
+            customProductRepository.updateListProduct(listProduct);
             return listProduct;
 
         } catch (Exception ex) {
@@ -89,4 +94,22 @@ public class ProductService extends BaseService implements IProductService{
         return true;
     }
 
+    @Override
+    public ProductEntity create(ProductDTO productDTO) {
+        ProductEntity newProduct = new ProductEntity();
+        newProduct.setCode(productDTO.getCode());
+        newProduct.setName(productDTO.getName());
+        newProduct.setUnitQuantity(productDTO.getUnitQuantity());
+        newProduct.setStatus(productDTO.getStatus());
+        newProduct.setColor(productDTO.getColor());
+        newProduct.setMassNumber(productDTO.getMassNumber());
+        newProduct.setSku(productDTO.getSku());
+        newProduct.setImage(productDTO.getImage());
+        newProduct.setQuantity(productDTO.getQuantity());
+        return productRepository.save(newProduct);
+    }
+
+    public List<ProductEntity> findAll() {
+        return productRepository.findAll();
+    }
 }
