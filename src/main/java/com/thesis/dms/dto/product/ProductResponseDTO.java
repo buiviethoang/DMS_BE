@@ -1,16 +1,19 @@
 package com.thesis.dms.dto.product;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Positive;
+import javax.persistence.Column;
 import java.math.BigDecimal;
 
+
+@JsonInclude(JsonInclude.Include.NON_NULL)
+@JsonIgnoreProperties(ignoreUnknown = true)
 @Getter
 @Setter
-public class ProductDTO {
-    @NotBlank(message = "Ma code khong duoc de trong")
+public class ProductResponseDTO {
     private String code;
     private String name;
     private Long unitQuantity;
@@ -19,6 +22,5 @@ public class ProductDTO {
     private Long massNumber;
     private BigDecimal sku;
     private String image;
-    @Positive(message = "So luong phai la so duong")
     private Long quantity;
 }

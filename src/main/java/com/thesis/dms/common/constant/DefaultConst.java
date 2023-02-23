@@ -10,6 +10,7 @@ public class DefaultConst {
     public static final String STRING = "";
     public static final String NUMBER = "-1";
     public static final String PAGE = "1";
+    public static final String BOOL = "true";
     public static final String SIZE = "10";
     public static final String SORT_TYPE = "1";
     public static final String START_TIME = "0000-01-01 00:00:00";

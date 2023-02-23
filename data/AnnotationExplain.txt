@@ -1,0 +1,15 @@
+Serializable: https://stackjava.com/java/java-serializable-la-gi-serialization-va-deserialization-trong-java.html
+Optional<Entity> | isPresent()
+@TypeDef(name = "jsonb", typeClass = JsonBinaryType.class)
+@Data vs @Getter vs @Setter => However, @Data generates all these methods automatically, and this can have some performance implications, especially if you don't actually need some of these methods. In some cases, you may only need a few of the generated methods, and using @Data could be overkill.
+@Type(type = "jsonb") same as @Typedef
+@NotFound(action = NotFoundAction.IGNORE)
+package org.springframework.data.domain;   Page<Entity>
+json_build_object
+json_agg
+@Transactional
+@NonNull
+@SneakyThrow vs Try-catch
+@PathVariable and @RequestParams
+ObjectMapper
+ModelMapper

@@ -1,5 +1,6 @@
 package com.thesis.dms.repository.impl;
 
+import com.thesis.dms.entity.BaseEntity;
 import com.thesis.dms.entity.product.ProductEntity;
 import com.thesis.dms.repository.custom.CustomProductRepository;
 import com.thesis.dms.service.EntityManagerService;
@@ -13,7 +14,7 @@ import java.util.List;
 
 @Repository
 @Transactional
-public class CustomProductImpl implements CustomProductRepository {
+public class CustomProductImpl extends BaseEntity implements CustomProductRepository {
     @Autowired
     private EntityManagerService entityManagerService;
     @Override

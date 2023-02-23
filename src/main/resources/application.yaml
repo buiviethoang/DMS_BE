@@ -27,7 +27,7 @@ spring:
           use_jdbc_metadata_defaults: false
     #        globally_quoted_identifiers: true
     open-in-view: false
-    show-sql: false
+    show-sql: true
 
 bezkoder:
   app:
@@ -45,13 +45,13 @@ permission:
   url-link: ${SET_PERMISSION:asddfsd}
 
 image:
-  upload-dir: ${IMAGE_UPLOAD_DIR:./data/image}
+  upload-dir: ${IMAGE_UPLOAD_DIR:/data/image}
   thumbnail:
     width: 320
     height: 180
 
 file:
-  upload-dir: ${FILE_UPLOAD_DIR:./data/file}
+  upload-dir: ${FILE_UPLOAD_DIR:/data/file}
 
 websocket:
   base-path: /ws/api/v1/websocket
