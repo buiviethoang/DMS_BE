@@ -2,14 +2,24 @@ Serializable: https://stackjava.com/java/java-serializable-la-gi-serialization-v
 Optional<Entity> | isPresent()
 @TypeDef(name = "jsonb", typeClass = JsonBinaryType.class)
 @Data vs @Getter vs @Setter => However, @Data generates all these methods automatically, and this can have some performance implications, especially if you don't actually need some of these methods. In some cases, you may only need a few of the generated methods, and using @Data could be overkill.
-@Type(type = "jsonb") same as @Typedef
+@Type(type = "jsonb") same as @Typedef -> lombok
 @NotFound(action = NotFoundAction.IGNORE)
-package org.springframework.data.domain;   Page<Entity>
-json_build_object
-json_agg
-@Transactional
-@NonNull
-@SneakyThrow vs Try-catch
-@PathVariable and @RequestParams
+package org.springframework.data.domain;   Page<Entity> ->
+json_build_object -> postgres => Query
+json_agg -> postgres => Query
+@Transactional => RepoImpl
+@NonNull -> lombok
+@SneakyThrow vs Try-catch => Controller
+@PathVariable and @RequestParams => Controller
 ObjectMapper
 ModelMapper
+@Transactional(readOnly = true) -> package org.springframework.transaction.annotation; => RepoImpl
+@PatchMapping -> package org.springframework.web.bind.annotation => Controller
+@JsonInclude(JsonInclude.Include.NON_NULL) -> package com.fasterxml.jackson.annotation; => Entity
+@EqualsAndHashCode(callSuper = true) -> lombok => DTO
+@JsonIgnore -> package com.fasterxml.jackson.annotation; => DTO
+BigInteger
+coalesce => sql
+@Modifying(clearAutomatically = true) => Repository
+@ApiImplicitParams => Swagger
+@PreAuthorize => Spring Security

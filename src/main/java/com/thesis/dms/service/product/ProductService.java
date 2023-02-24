@@ -11,6 +11,7 @@ import com.thesis.dms.exception.CustomException;
 import com.thesis.dms.repository.ProductRepository;
 import com.thesis.dms.repository.custom.CustomProductRepository;
 import com.thesis.dms.service.BaseService;
+import com.thesis.dms.utils.RandomUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.poi.ss.usermodel.*;
 import org.hibernate.internal.util.StringHelper;
@@ -27,6 +28,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.math.BigDecimal;
+import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -82,6 +84,9 @@ public class ProductService extends BaseService implements IProductService{
                 if (row.getRowNum() == 0 || isRowEmpty(row)) continue;
                 ProductEntity productEntity = new ProductEntity();
                 Iterator<Cell> cellIterator = row.cellIterator();
+                productEntity.setUpdatedDate(ZonedDateTime.now());
+                productEntity.setCreatedDate(ZonedDateTime.now());
+                productEntity.setUid(RandomUtils.getRandomId());
                 productEntity.setCode(row.getCell(0).getStringCellValue());
                 productEntity.setName(row.getCell(1).getStringCellValue());
                 productEntity.setUnitQuantity(Long.valueOf((long) row.getCell(2).getNumericCellValue()));
@@ -120,6 +125,11 @@ public class ProductService extends BaseService implements IProductService{
         newProduct.setImage(productDTO.getImage());
         newProduct.setQuantity(productDTO.getQuantity());
         return productRepository.save(newProduct);
+    }
+
+    @Override
+    public ProductEntity findById(Long id) {
+        return productRepository.findProductById(id);
     }
 
     @Override

@@ -67,7 +67,7 @@ public class AuthServiceImpl extends BaseService implements IAuthService {
 //            throw getException(2, "User Not Active");
 //        }
 //        template.opsForValue().set(userDetails.getUsername(), jwt);
-//        logger.info("token data: {}", template.opsForValue().get(userDetails.getUsername()));
+//        logger.info("token data: {}", template.opsForValue().get (userDetails.getUsername()));
 
         List<String> roles = userDetails.getAuthorities().stream()
                 .map(item -> item.getAuthority())

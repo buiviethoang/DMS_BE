@@ -5,11 +5,13 @@ import com.thesis.dms.common.request.IApiName;
 import com.thesis.dms.dto.product.ProductDTO;
 import com.thesis.dms.entity.ResultEntity;
 import com.thesis.dms.entity.product.ProductEntity;
+import com.thesis.dms.entity.user.UserDetailsImpl;
 import com.thesis.dms.service.product.IProductService;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -39,16 +41,27 @@ public class ProductController extends BaseController{
     
     @ApiOperation(value = "Thêm mới sản phẩm")
     @PostMapping("/create")
-    public ResponseEntity<?> create(@Valid @RequestBody ProductDTO productDTO) {
+    public ResponseEntity<?> create(Authentication authentication, @Valid @RequestBody ProductDTO productDTO) {
         try {
+            UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
             return response(new ResultEntity(1, "Create product successfully", productService.create(productDTO)));
-
         }
         catch (Exception ex) {
             return response(error(ex));
         }
     }
-    @ApiOperation(value = "Get all products from produtlist")
+    @ApiOperation(value = "Tim san pham bang id", notes = "{}")
+    @GetMapping("/get-by-id/{id}")
+    public ResponseEntity<?> getById(@PathVariable("id") Long id) {
+        try {
+            return response(new ResultEntity(1,"Get product successfully", productService.findById(id)));
+        }
+        catch (Exception ex) {
+            return response(error(ex));
+        }
+    }
+    @PreAuthorize("@securityCheck.checkAdmin(authentication)")
+    @ApiOperation(value = "Get all products from product list")
     @GetMapping("/get-all")
     public ResponseEntity<?> getAll() {
         try {

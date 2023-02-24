@@ -17,6 +17,8 @@ public interface IProductService {
 
     ProductEntity create(ProductDTO productDTO);
 
+    ProductEntity findById(Long id);
+
     List<ProductEntity> findAll();
 
     ReturnPaginationDTO<ProductResponseDTO> search(

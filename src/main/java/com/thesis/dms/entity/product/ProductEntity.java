@@ -3,11 +3,10 @@ package com.thesis.dms.entity.product;
 import com.thesis.dms.entity.BaseEntity;
 import lombok.Getter;
 import lombok.Setter;
-import org.hibernate.annotations.CollectionId;
+import org.hibernate.annotations.NotFound;
+import org.hibernate.annotations.NotFoundAction;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.math.BigDecimal;
 
 @Entity
@@ -35,4 +34,9 @@ public class ProductEntity extends BaseEntity {
     private String image;
     @Column(name = "quantity")
     private Long quantity;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "unit_id")
+    @NotFound(action = NotFoundAction.IGNORE)
+    private ProductUnit unit;
 }

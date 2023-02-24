@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.Query;
+import java.sql.Timestamp;
 import java.util.List;
 
 @Repository
@@ -19,7 +20,7 @@ public class CustomProductImpl extends BaseEntity implements CustomProductReposi
     private EntityManagerService entityManagerService;
     @Override
     public void updateListProduct(List<ProductEntity> productEntities) {
-        String queryString = "insert into product (code, name, unit_quantity, status, color, mass_no, sku, image, quantity) values ";
+        String queryString = "insert into product (created_date, updated_date, uid, code, name, unit_quantity, status, color, mass_no, sku, image, quantity) values ";
         int batchSize = 100;
         StringBuilder productBuilder = new StringBuilder();
 
@@ -27,7 +28,11 @@ public class CustomProductImpl extends BaseEntity implements CustomProductReposi
             return;
         }
         for (int i = 0; i<productEntities.size(); i++) {
-            productBuilder.append("('").append(productEntities.get(i).getCode()).append("', '")
+            productBuilder.append("('")
+                    .append(Timestamp.valueOf(productEntities.get(i).getCreatedDate().toLocalDateTime())).append("', '")
+                    .append(Timestamp.valueOf(productEntities.get(i).getUpdatedDate().toLocalDateTime())).append("', '")
+                    .append(productEntities.get(i).getUid()).append("', '")
+                    .append(productEntities.get(i).getCode()).append("', '")
                     .append(productEntities.get(i).getName()).append("', '")
                     .append(productEntities.get(i).getUnitQuantity()).append("', '")
                     .append(productEntities.get(i).getStatus()).append("', '")
